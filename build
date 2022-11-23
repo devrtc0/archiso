@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+! type mkarchiso >/dev/null 2>&1 && sudo pacman -S archiso
+
+sudo rm -rf /tmp/archiso-tmp
+
+sudo mkarchiso -v -w /tmp/archiso-tmp $PWD/base
