@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+if [ $# -ne 2 ]; then
+    echo 'wrong arguments number'
+    echo 'usage: ./goarch <password> <profile name from profiles directory>'
+    exit -1
+fi
+
+git clone https://github.com/devrtc0/arch
+cd arch
+
+./decode_configuration $1 $2
+
+[ ! -f "plain_configuration" ] && echo 'no config file' && exit -1
+
+./zz1 $1 $2
