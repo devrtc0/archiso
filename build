@@ -2,8 +2,15 @@
 
 CUR_DIR=$(dirname "$(readlink -f "$0")")
 
-! type mkarchiso >/dev/null 2>&1 && sudo pacman -S archiso
-
+rm -rf "$CUR_DIR/out/*"
 sudo rm -rf /tmp/archiso-tmp
 
+! type mkarchiso >/dev/null 2>&1 && sudo pacman --noconfirm -S archiso
+
 sudo mkarchiso -v -w /tmp/archiso-tmp $CUR_DIR/base
+
+if [ $? -ne 0 ]; then
+	exit
+fi
+
+ln -s $(find $CUR_DIR/out/archlinux-20*.iso) $CUR_DIR/out/archlinux.iso
