@@ -2,7 +2,7 @@
 
 WORKDIR=$(dirname "$(readlink -f "$0")")
 
-rm -rf "$WORKDIR/out/*"
+sudo rm -rf "$WORKDIR/out"
 sudo rm -rf /tmp/archiso-tmp
 
 ! type mkarchiso >/dev/null 2>&1 && sudo pacman --noconfirm -S archiso
